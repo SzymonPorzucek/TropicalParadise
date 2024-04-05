@@ -153,6 +153,11 @@ body {
 		}
 	}
 }
+.black-bars-color,
+.black-bars-color::after,
+.black-bars-color::before {
+	background-color: $dark;
+}
 //MAIN
 //section DREAMS
 .dreams {
@@ -440,7 +445,7 @@ body {
 	&__box-social {
 		margin: 2em 0 1em;
 		display: flex;
-		justify-content:space-evenly;
+		justify-content: space-evenly;
 	}
 	&__box-link {
 		padding: 0.3em;
