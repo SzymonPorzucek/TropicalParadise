@@ -6,8 +6,8 @@ const allSections = document.querySelectorAll(".section");
 const footerYear = document.querySelector(".footer__year");
 
 const handleNav = () => {
-	navBtnBars.classList.remove('black-bars-color')
-	
+	navBtnBars.classList.remove("black-bars-color");
+
 	nav.classList.toggle("nav--active");
 	allNavItems.forEach(item => {
 		item.addEventListener("click", () => {
@@ -15,6 +15,9 @@ const handleNav = () => {
 		});
 	});
 	handleNavItemsNavigation();
+	if (!nav.classList.contains("nav--active")) {
+		handleObserver();
+	}
 };
 
 const handleNavItemsNavigation = () => {
@@ -31,13 +34,26 @@ const handleCurrentYear = () => {
 };
 const handleObserver = () => {
 	const currentSection = window.scrollY;
-	allSections.forEach(section=>{
-		if(section.classList.contains('white-section') && section.offsetTop<=currentSection+60){
-			navBtnBars.classList.add('black-bars-color')
-		}else if(!section.classList.contains('white-section') && section.offsetTop<=currentSection+60){navBtnBars.classList.remove('black-bars-color')
+	allSections.forEach(section => {
+		if (
+			section.classList.contains("white-section") &&
+			section.offsetTop <= currentSection + 60
+		) {
+			navBtnBars.classList.add("black-bars-color");
+		} else if (
+			!section.classList.contains("white-section") &&
+			section.offsetTop <= currentSection + 60
+		) {
+			navBtnBars.classList.remove("black-bars-color");
+		}
+	});
+	deleteBlackBarsColor ()
+};
+const deleteBlackBarsColor = () => {
+	if (nav.classList.contains("nav--active")) {
+		navBtnBars.classList.remove("black-bars-color");
 	}
-	})
 };
 handleCurrentYear();
 navBtn.addEventListener("click", handleNav);
-window.addEventListener('scroll', handleObserver)
+window.addEventListener("scroll", handleObserver);
